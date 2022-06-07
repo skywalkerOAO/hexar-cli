@@ -1,0 +1,31 @@
+{
+  "name": "hexar-cli",
+  "version": "1.0.1",
+  "description": "simple web-dev-cli",
+  "main": "index.js",
+  "bin": {
+    "hexar": "bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"no test scripts \" &&exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "typescript",
+    "react",
+    "website"
+  ],
+  "author": "wangzhao",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "clear": "^0.1.0",
+    "commander": "^9.3.0",
+    "download-git-repo": "^3.0.2",
+    "figlet": "^1.5.2",
+    "inquirer": "^8.2.4",
+    "ora": "^5.1.0",
+    "rimraf": "^3.0.2",
+    "util": "^0.12.4"
+  }
+}

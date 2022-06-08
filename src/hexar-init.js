@@ -3,6 +3,7 @@
 /* 变量声明 */
 var inquirer = require('inquirer')
 var state = 0
+var errmsg = ''
 const fs = require('fs');
 const clear = require('clear')
 const chalk = require('chalk')
@@ -24,11 +25,12 @@ const success = async (Name) => {
     console.log("💖💖💖💖💖💖💖💖💖💖")
 
 }
-const failed = async () => {
+const failed = async (err) => {
     clear()
     const data = await figlet('FAILED!')
     console.log(chalk.red(data))
-    console.log('安装依赖失败,请手动清除npm缓存后重试npm install')
+    console.log('安装依赖失败,过程中可能存在安装问题,以下为错误详情')
+    console.log(err)
 }
 const spawn = async (...args) => {
     const { spawn } = require('child_process')
@@ -39,6 +41,7 @@ const spawn = async (...args) => {
             resolve()
         })
         proc.stderr.on('data', (data) => {
+            errmsg = data
             resolve()
         })
     })
@@ -51,9 +54,11 @@ const insDependies = async (Name) => {
     if (state == 1) {
         clear()
         success(Name)
+        return
     } else {
         clear()
-        failed()
+        failed(errmsg)
+        return
     }
 }
 const chooseModel = async (Options) => {
